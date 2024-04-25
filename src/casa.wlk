@@ -27,7 +27,7 @@ object casaDePepeYJulian {
 	method vieneDeEquiparse() = cosas.last().esElectrodomestico() or
 	cosas.last().precio() > 50000
 	
-	method esDerrochona() = cosas.sum({cosa=>cosa.precio()})>90000
+	method esDerrochona() = cosas.sum({cosa=>cosa.precio()})>=90000
 	
 	method compraMasCara() = cosas.max({cosa=>cosa.precio()})
 	
