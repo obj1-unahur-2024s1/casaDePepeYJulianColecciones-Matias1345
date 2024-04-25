@@ -1,0 +1,45 @@
+import cuentasBancarias.*
+import casa.*
+import cosas.*
+
+test "test del saldo de la Cuenta Combinada" {
+	cuentaCombinada.setCuentaPrimaria(cuentaCorriente)
+	cuentaCombinada.setCuentaSecundaria(cuentaConGastos)
+	cuentaCorriente.depositar(30000)
+	cuentaConGastos.depositar(2000200)
+	assert.equals(2030000,cuentaCombinada.saldo())
+}
+
+test "test del deposito de la Cuenta Combinada" {
+	cuentaCombinada.setCuentaPrimaria(cuentaCorriente)
+	cuentaCombinada.setCuentaSecundaria(cuentaConGastos)
+	cuentaCorriente.depositar(30000)
+	cuentaConGastos.depositar(2000200)
+	cuentaCombinada.depositar(10000)
+	assert.equals(40000,cuentaCorriente.saldo())
+}
+
+test "test de la extraccion de $5000 de la Cuenta Combinada" {
+	cuentaCombinada.setCuentaPrimaria(cuentaCorriente)
+	cuentaCombinada.setCuentaSecundaria(cuentaConGastos)
+	cuentaCorriente.depositar(30000)
+	cuentaConGastos.depositar(2000200)
+	cuentaCombinada.extraer(5000)
+	assert.equals(25000,cuentaCorriente.saldo())
+}
+
+test "test de la extraccion de $100000 de la Cuenta Combinada" {
+	cuentaCombinada.setCuentaPrimaria(cuentaCorriente)
+	cuentaCombinada.setCuentaSecundaria(cuentaConGastos)
+	cuentaCorriente.depositar(30000)
+	cuentaConGastos.depositar(2000200)
+	cuentaCombinada.extraer(100000)
+	assert.equals(1898000,cuentaConGastos.saldo())
+}
+
+test "test comprar la Tira de Asado para la casa"{
+	cuentaCorriente.depositar(30000)
+	casaDePepeYJulian.setCuentaAUtilizar(cuentaCorriente)
+	casaDePepeYJulian.comprar(tiraDeAsado)
+	assert.equals(26500,casaDePepeYJulian.dineroDisponible())
+}
